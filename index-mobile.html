@@ -53,7 +53,9 @@
     --shadow-float:0 10px 30px rgba(11,16,32,.10);
 
     /* Mobile type scale */
-    --fs-hero-m:clamp(40px,12vw,52px);
+    /* Sized so the bold half ('cannabis friendly') holds one line at 360px+;
+       the old 12vw scale was set for the much shorter 'get approved' copy. */
+    --fs-hero-m:clamp(28px,8.4vw,38px);
     --fs-sub-m:20px;
 
     /* === APPLY BUTTON DIMENSIONS (mobile) — user-specified ===
@@ -120,9 +122,12 @@
   .m-trust span{display:inline-flex;align-items:center;gap:6px}
   .m-trust svg{color:var(--cta-purple);flex:0 0 auto}
   .m-industries{
-    margin:14px 0 0;font-size:14px;line-height:1.5;color:var(--slate);
+    margin:14px 0 0;font-size:clamp(12.5px,3.6vw,14px);line-height:1.5;color:var(--slate);
     font-weight:500;letter-spacing:.01em;
   }
+  /* Break only at the separators — never inside a term ("e-commerce" was
+     splitting at its hyphen; "hemp processing" at its space). */
+  .m-industries span{white-space:nowrap}
 
   /* ---------- Photo + floating chat bubbles ---------- */
   .m-photo-wrap{margin-top:clamp(40px,9vw,72px);position:relative}
@@ -231,8 +236,8 @@
   <!-- ============================== MOBILE HERO ============================== -->
   <section class="m-hero">
     <div class="container">
-      <!-- Casing adjustable: lowercase per spec; title case is a one-line change. -->
-      <h1>get approved <span class="hl-bold">the same day</span></h1>
+      <!-- Two visual lines: .hl-bold is display:block, so the bold half drops to its own line. -->
+      <h1>Funding based on cash flow <span class="hl-bold">cannabis friendly</span></h1>
       <p class="m-sub">funding within 24 hours</p>
       <a class="btn-capsule" href="funding.html">See how it works</a>
 
@@ -241,7 +246,7 @@
         <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Funding from $5K&ndash;$500K</span>
         <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Offers in 24 hours</span>
       </div>
-      <p class="m-industries">cannabis &middot; e-commerce &middot; construction &middot; trucking &middot; restaurants &middot; retail</p>
+      <p class="m-industries"><span>dispensaries</span> &middot; <span>cultivation</span> &middot; <span>hemp processing</span> &middot; <span>e-commerce</span> &middot; <span>restaurants</span> &middot; <span>retail</span> &middot; <span>construction</span></p>
 
       <!--
         ART DIRECTION (see README-ART.md):
