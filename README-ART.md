@@ -7,7 +7,7 @@ retained so the layout still holds if an asset is ever removed.
 | Slot | File | Output | Subject |
 |---|---|---|---|
 | Desktop hero | `assets/brand/hero-desktop.webp` | 1200 × 1500 (4:5) | Man on phone, white tee, cut out on `#FFFFFF` |
-| Mobile hero | `assets/brand/hero-mobile.webp` | 900 × 1200 (3:4) | Man reading phone, cut out on `#FFFFFF` |
+| Mobile hero | `assets/brand/hero-mobile.webp` | 900 × 970 (90:97) | Man reading phone, cut out on `#FFFFFF`, cropped tight to the crown |
 
 ## Processing applied
 
@@ -60,8 +60,10 @@ area — no overlay, no `--haze`, no duotone (the `.duotone` utility is off).
 4. **Frame.** Subject bottom-anchored (body bleeds off the bottom edge, which reads
    as a normal waist crop) and kept clear of the top/left/right edges — a limb
    touching a side edge would read as a slice, since the frame itself is invisible.
-   Both subjects are near-square in silhouette inside a taller frame, so ~20–23%
-   headroom above the head is inherent to the geometry, not a framing slip.
+   The desktop subject is near-square in silhouette inside a taller 4:5 frame, so
+   its ~20% headroom above the head is inherent to the geometry, not a framing
+   slip. The mobile frame instead matches its asset's aspect (90:97) exactly, so
+   it carries no incidental headroom and `object-fit:cover` crops nothing.
 5. **Encode.** WebP, method 6. The repo uses plain `<img>` with no `<picture>` or
    `srcset` anywhere, so a single `.webp` per slot is the right output — no
    `<picture>` element was introduced for these two images.
@@ -119,9 +121,11 @@ eyeline logic still work:
 > Avoid pure-white clothing, which loses its edge against the ground. Leave the
 > lower-left of the frame uncluttered for the bubble overlay.
 
-Deliver a source at any aspect — the pipeline reframes to 4:5 (desktop) and 3:4
-(mobile). Both frames are chrome-free, so the subject must not touch the top or
-side edges of the output; only the bottom edge may carry the subject.
+Deliver a source at any aspect — the pipeline reframes to 4:5 (desktop). The
+mobile frame follows its asset instead: `.m-card`'s `aspect-ratio` is set to the
+asset's own ratio, so a replacement there must ship with a matching CSS update.
+Both frames are chrome-free, so the subject must not touch the top or side edges
+of the output; only the bottom edge may carry the subject.
 
 ## Optional brand duotone
 

@@ -127,7 +127,7 @@
   /* ---------- Photo + floating chat bubbles ---------- */
   .m-photo-wrap{margin-top:clamp(40px,9vw,72px);position:relative}
   .m-card{
-    position:relative;aspect-ratio:3/4;overflow:hidden;
+    position:relative;aspect-ratio:90/97;overflow:hidden;
     /* Cut-out subject on white: no card chrome, she floats on the page.
        Falls back to a faint tint only if the photo is missing. */
     background:#FFFFFF;
@@ -242,13 +242,15 @@
       <!--
         ART DIRECTION (see README-ART.md):
         Subject cut out and composited onto the exact page background (#FFFFFF)
-        so the figure floats on the page with no card edge. Portrait 3:4,
-        900x1200, bottom-anchored, framed so the chat bubbles clear the face.
+        so the figure floats on the page with no card edge. Portrait 900x970,
+        cropped tight to the crown so the subject fills the frame; .m-card's
+        aspect-ratio matches the asset exactly, so object-fit:cover crops nothing.
+        Framed so the chat bubbles still clear the face.
         File: assets/brand/hero-mobile.webp.
       -->
       <div class="m-photo-wrap">
         <div class="m-card">
-          <img src="assets/brand/hero-mobile.webp" width="900" height="1200"
+          <img src="assets/brand/hero-mobile.webp" width="900" height="970"
                alt="Business owner checking his phone while arranging funding"
                onerror="this.style.display='none'">
         </div>
