@@ -127,7 +127,7 @@
   /* ---------- Photo + floating chat bubbles ---------- */
   .m-photo-wrap{margin-top:clamp(40px,9vw,72px);position:relative}
   .m-card{
-    position:relative;aspect-ratio:3/4;overflow:hidden;
+    position:relative;aspect-ratio:90/97;overflow:hidden;
     /* Cut-out subject on white: no card chrome, she floats on the page.
        Falls back to a faint tint only if the photo is missing. */
     background:#FFFFFF;
@@ -136,11 +136,15 @@
   /* Optional brand duotone — add class="duotone" to .m-card to enable */
   .m-card.duotone img{filter:grayscale(1) contrast(1.05)}
   .m-card.duotone::after{content:"";position:absolute;inset:0;background:var(--brand-purple);mix-blend-mode:color;pointer-events:none}
-  .m-bubbles{position:absolute;left:14px;bottom:20px;display:grid;gap:12px;justify-items:start;max-width:86%;z-index:2}
+  /* Right side: the subject holds the phone on the left (x 11-38%), so the
+     thread sits in the clean sweater column opposite it and stays inside the
+     photo. max-width keeps it out of the phone's column; the block is bottom
+     anchored and still clears the chin at 42%. */
+  .m-bubbles{position:absolute;right:14px;bottom:16px;display:grid;gap:8px;justify-items:end;max-width:50%;z-index:2}
   .m-bubble{
     background:var(--bubble-bg);color:var(--ink-navy);
-    border-radius:24px 24px 24px 8px;padding:14px 18px;
-    font-size:16px;line-height:1.4;font-weight:400;margin:0;
+    border-radius:24px 24px 8px 24px;padding:12px 15px;
+    font-size:clamp(14px,3.9vw,15px);line-height:1.4;font-weight:400;margin:0;
     box-shadow:var(--shadow-float);text-align:left;
   }
   .m-bubble strong{font-weight:700}
@@ -242,13 +246,15 @@
       <!--
         ART DIRECTION (see README-ART.md):
         Subject cut out and composited onto the exact page background (#FFFFFF)
-        so the figure floats on the page with no card edge. Portrait 3:4,
-        900x1200, bottom-anchored, framed so the chat bubbles clear the face.
+        so the figure floats on the page with no card edge. Portrait 900x970,
+        cropped tight to the crown so the subject fills the frame; .m-card's
+        aspect-ratio matches the asset exactly, so object-fit:cover crops nothing.
+        Framed so the chat bubbles still clear the face.
         File: assets/brand/hero-mobile.webp.
       -->
       <div class="m-photo-wrap">
         <div class="m-card">
-          <img src="assets/brand/hero-mobile.webp" width="900" height="1200"
+          <img src="assets/brand/hero-mobile.webp" width="900" height="970"
                alt="Business owner checking his phone while arranging funding"
                onerror="this.style.display='none'">
         </div>
