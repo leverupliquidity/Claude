@@ -125,7 +125,7 @@
   }
 
   /* ---------- Photo + floating chat bubbles ---------- */
-  .m-photo-wrap{margin-top:clamp(40px,9vw,72px);position:relative}
+  .m-photo-wrap{margin-top:clamp(40px,9vw,72px);margin-bottom:104px;position:relative}
   .m-card{
     position:relative;aspect-ratio:90/97;overflow:hidden;
     /* Cut-out subject on white: no card chrome, she floats on the page.
@@ -136,7 +136,11 @@
   /* Optional brand duotone — add class="duotone" to .m-card to enable */
   .m-card.duotone img{filter:grayscale(1) contrast(1.05)}
   .m-card.duotone::after{content:"";position:absolute;inset:0;background:var(--brand-purple);mix-blend-mode:color;pointer-events:none}
-  .m-bubbles{position:absolute;left:14px;bottom:20px;display:grid;gap:12px;justify-items:start;max-width:86%;z-index:2}
+  /* Top-anchored just below 80%, where the subject's phone ends. Anchoring to
+     the photo's bottom instead would let the block ride back up over the phone
+     whenever the copy rewraps; this way it always starts below the phone and
+     spills onto the white reserved by .m-photo-wrap's margin-bottom. */
+  .m-bubbles{position:absolute;left:14px;top:82%;display:grid;gap:12px;justify-items:start;max-width:86%;z-index:2}
   .m-bubble{
     background:var(--bubble-bg);color:var(--ink-navy);
     border-radius:24px 24px 24px 8px;padding:14px 18px;
