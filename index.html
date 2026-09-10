@@ -112,7 +112,7 @@
 
   /* ---------- Layout helpers ---------- */
   .container{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:20px}
-  .section{padding:clamp(40px,5vw,72px) 0}
+  .section{padding:clamp(24px,3vw,40px) 0}
   .section--haze{background:var(--haze)}
   .eyebrow{
     display:inline-block;
@@ -123,7 +123,7 @@
     padding:6px 14px;border-radius:var(--radius-pill);
     margin-bottom:18px;
   }
-  .section-head{max-width:680px;margin-bottom:28px}
+  .section-head{max-width:680px;margin-bottom:16px}
   .section-head.center{margin-inline:auto;text-align:center}
   .lead{font-size:1.12rem;color:var(--muted)}
 
@@ -201,9 +201,14 @@
   .mobile-menu .menu-cta{margin-top:18px;display:grid;gap:10px}
 
   /* ---------- Hero — two-column, full-bleed white, high whitespace ---------- */
-  .hero{background:var(--white);color:var(--ink-navy);padding:clamp(32px,4vw,56px) 0}
+  .hero{background:var(--white);color:var(--ink-navy);padding:clamp(20px,2.5vw,36px) 0}
   .hero-grid{
-    display:grid;grid-template-columns:45% 1fr;gap:clamp(40px,5vw,72px);align-items:center;
+    /* minmax(0,...) on both tracks: a bare 45%/1fr track's implicit minimum
+       is its content's natural width, which at narrow viewports lets the
+       text column's content force the photo column toward zero instead of
+       actually sharing space — minmax(0,...) lets both tracks shrink and
+       wrap their content properly instead of overflowing. */
+    display:grid;grid-template-columns:minmax(0,45%) minmax(0,1fr);gap:clamp(40px,5vw,72px);align-items:center;
   }
   .hero-copy h1{
     font-size:var(--fs-hero);line-height:1.05;letter-spacing:-.02em;
@@ -249,7 +254,7 @@
      aspect-ratio still reserves the box, so the layout holds if the asset 404s. */
   .hero-media{position:relative}
   .hero-card{
-    position:relative;overflow:hidden;aspect-ratio:4/5;
+    position:relative;overflow:hidden;aspect-ratio:1200/1153;
     background:var(--white);
   }
   .hero-card img{width:100%;height:100%;object-fit:cover;display:block}
@@ -371,13 +376,13 @@
   .cta-actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:26px}
 
   /* ---------- Footer ---------- */
-  .site-footer{background:var(--grape);color:#CFC6E4;padding:64px 0 0}
+  .site-footer{background:var(--grape);color:#CFC6E4;padding:44px 0 0}
   .site-footer .logo{color:#fff}
   /* Dark footer: the navy half of the two-tone mark loses contrast on --grape,
      so both L forms render white here (monochrome variant of the mark). */
   .site-footer .logo .mark .l-dark,
   .site-footer .logo .mark .l-light{fill:#FFFFFF}
-  .footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px}
+  .footer-top{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);gap:36px}
   .footer-blurb{max-width:320px;color:#B7ACD4;margin-top:16px}
   .footer-contact{margin-top:18px;display:grid;gap:8px}
   .footer-contact a{color:#fff;font-weight:600;display:inline-flex;align-items:center;gap:8px}
@@ -386,7 +391,7 @@
   .footer-col a{color:#CFC6E4}
   .footer-col a:hover{color:#fff}
   .footer-disclosure{
-    border-top:1px solid rgba(255,255,255,.12);margin-top:48px;padding:28px 0;
+    border-top:1px solid rgba(255,255,255,.12);margin-top:32px;padding:28px 0;
     font-size:.85rem;color:#9F95BE;line-height:1.7;
   }
   .footer-bottom{
@@ -449,8 +454,8 @@
   @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
   /* ---------- Funding options — minimalist restyle (shared with index-mobile.html) ---------- */
-  .fo-section{background:var(--white);padding:clamp(40px,6vw,72px) 0}
-  .fo-head{max-width:720px;margin:0 0 32px}
+  .fo-section{background:var(--white);padding:clamp(24px,3.5vw,40px) 0}
+  .fo-head{max-width:720px;margin:0 0 18px}
   .fo-head h2{
     font-size:clamp(34px,3.4vw,46px);line-height:1.1;letter-spacing:-.02em;
     color:var(--ink-navy);font-weight:300;margin:0 0 16px;
@@ -474,7 +479,8 @@
   .fo-card .fo-go{margin-top:auto;padding-top:14px;color:var(--cta-purple);font-weight:600;font-size:15px}
   .fo-card--accent{background:var(--bubble-bg);border-color:transparent}
   @media (max-width:900px){ .fo-grid{grid-template-columns:repeat(2,1fr)} }
-  @media (max-width:560px){ .fo-grid{grid-template-columns:1fr} }
+  /* Floor is 2 columns, not 1 — see the responsive-block note further down
+     for why this page never stacks to a single vertical column. */
 
   /* Two-column media row */
   .media-row{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
@@ -498,11 +504,15 @@
 
   /* ---------- Responsive ---------- */
   @media (max-width:980px){
-    .footer-top{grid-template-columns:1fr 1fr}
+    .footer-top{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
     .media-row{grid-template-columns:1fr;gap:28px}
-    /* Hero collapses to one column; the desktop page still reads well narrow,
-       but /index-mobile.html is what phones actually get (edge rewrite). */
-    .hero-grid{grid-template-columns:1fr;gap:44px}
+    /* The desktop page stays side-by-side (horizontal) at every width down to
+       560px, not just >=980px: routing to /index-mobile.html is by device
+       User-Agent (see mobile-rewrite.js), not viewport width, so a desktop
+       browser with a narrow or resized window still renders THIS page and
+       must not fall back to a stacked, mobile-style layout. Only the
+       separate mobile page stacks vertically. */
+    .hero-grid{gap:32px}
     .hero-bubbles{left:12px;bottom:12px;max-width:70%}
     .hero-bubbles .hero-bubble{max-width:min(290px,100%)}   /* keep thread-width, never exceed the group */
   }
@@ -515,13 +525,17 @@
     body{padding-bottom:0}
   }
   @media (max-width:560px){
-    .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
-    .footer-top{grid-template-columns:1fr 1fr}
+    /* Floor is 2 columns, never 1: .grid-3/.grid-4's own repeat(2,1fr) from the
+       820px rule above carries through unchanged. .grid-2 isn't used on this
+       page, so it's left out of scope here rather than folded into a rule
+       that no longer collapses anything. */
+    .footer-top{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
     .footer-bottom{justify-content:flex-start}
     .hero-actions .btn,.cta-actions .btn{width:100%}
+    .hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px}
   }
   @media (max-width:400px){
-    .footer-top{grid-template-columns:1fr}
+    .footer-top{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
   }
 </style>
 </head>
@@ -600,14 +614,15 @@
           <!--
             ART DIRECTION (see README-ART.md):
             Subject cut out and composited onto the exact page background (#FFFFFF)
-            so the figure floats on the page with no card edge. Portrait 4:5,
-            1200x1500, bottom-anchored with headroom above the subject.
+            so the figure floats on the page with no card edge. Portrait 1200x1153,
+            cropped tight to the crown so the subject fills the frame; .hero-card's
+            aspect-ratio matches the asset exactly, so object-fit:cover crops nothing.
             File: assets/brand/hero-desktop.webp.
             aspect-ratio on .hero-card reserves the box and the onerror fallback
             hides a broken img, so the layout holds if the asset goes missing.
           -->
           <div class="hero-card">
-            <img src="assets/brand/hero-desktop.webp" width="1200" height="1500"
+            <img src="assets/brand/hero-desktop.webp" width="1200" height="1153"
                  alt="Business owner smiling while talking on his phone"
                  onerror="this.style.display='none'">
           </div>
