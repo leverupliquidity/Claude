@@ -201,7 +201,7 @@
   .mobile-menu .menu-cta{margin-top:18px;display:grid;gap:10px}
 
   /* ---------- Hero — two-column, full-bleed white, high whitespace ---------- */
-  .hero{background:var(--white);color:var(--ink-navy);padding:clamp(56px,6vw,88px) 0}
+  .hero{background:var(--white);color:var(--ink-navy);padding:clamp(32px,4vw,56px) 0}
   .hero-grid{
     display:grid;grid-template-columns:45% 1fr;gap:clamp(40px,5vw,72px);align-items:center;
   }
@@ -211,7 +211,11 @@
   }
   /* Weight contrast is the core device — adjust the split by moving the
      <span class="hl-bold"> boundary in the markup. */
-  .hero-copy h1 .hl-bold{font-weight:700}
+  /* This heading's bold half is forced to its own line (unlike .fo-head h2's
+     inline .hl-bold) — a short 2-word phrase like "on Revenue" wraps
+     unpredictably inline at some widths (e.g. splitting "on" from "Revenue"),
+     so it gets the same block treatment as the mobile hero's .hl-bold. */
+  .hero-copy h1 .hl-bold{font-weight:700;display:block}
   .hero-copy .hero-sub{
     font-size:var(--fs-sub);line-height:1.5;color:var(--slate);
     max-width:34em;margin:0 0 36px;font-weight:400;
@@ -578,7 +582,7 @@
         <!-- Left column: headline / sub-copy / two CTAs -->
         <div class="hero-copy">
           <!-- Weight split is adjustable: move the <span class="hl-bold"> boundary. -->
-          <h1>Turn your revenue into <span class="hl-bold">the capital your business needs today</span></h1>
+          <h1>Funding Based <span class="hl-bold">on Revenue</span></h1>
           <p class="hero-sub">Funding for dispensaries, cultivation, hemp processing, e-commerce, restaurants, retail, and construction. We get rid of the hoops banks make businesses jump through.</p>
           <div class="hero-actions">
             <a class="btn-rect btn-rect--secondary" href="funding.html">How it works</a>
