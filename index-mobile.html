@@ -53,10 +53,7 @@
     --shadow-float:0 10px 30px rgba(11,16,32,.10);
 
     /* Mobile type scale */
-    /* The h1 is now a single plain-weight sentence (no .hl-bold half), so
-       it only needs to avoid overflow/awkward breaks on its own — sized for
-       a clean two-line wrap ("Funding based on" / "cash flow") at 360px+. */
-    --fs-hero-m:clamp(32px,9.5vw,44px);
+    --fs-hero-m:clamp(40px,12vw,52px);
     --fs-sub-m:20px;
 
     /* === APPLY BUTTON DIMENSIONS (mobile) — user-specified ===
@@ -237,8 +234,9 @@
   <!-- ============================== MOBILE HERO ============================== -->
   <section class="m-hero">
     <div class="container">
-      <h1>Funding based on cash flow</h1>
-      <p class="m-sub">cannabis friendly</p>
+      <!-- Casing adjustable: lowercase per spec; title case is a one-line change. -->
+      <h1>get approved <span class="hl-bold">the same day</span></h1>
+      <p class="m-sub">funding within 24 hours</p>
       <a class="btn-capsule" href="funding.html">See how it works</a>
 
       <!-- Trust strip + industries line — content parity with the desktop hero. -->
