@@ -170,6 +170,22 @@
   .fo-card .fo-go{margin-top:auto;padding-top:14px;color:var(--cta-purple);font-weight:600;font-size:15px}
   .fo-card--accent{background:var(--bubble-bg);border-color:transparent}
 
+  /* ---------- Do you qualify (checklist) ---------- */
+  .qualify-section{background:var(--haze);padding:clamp(40px,9vw,64px) 0}
+  .qualify-list{list-style:none;margin:0 0 20px;padding:0;display:grid;gap:10px;max-width:340px;margin-inline:auto}
+  .qualify-list li{
+    display:flex;align-items:center;gap:10px;background:var(--white);
+    border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+    font-weight:600;color:var(--ink-navy);font-size:15px;
+  }
+  .qualify-list svg{color:var(--cta-purple);flex:0 0 auto}
+  .qualify-note{font-size:14px;line-height:1.6;color:var(--slate);text-align:center;max-width:340px;margin:0 auto 20px}
+  /* Wider + nowrap: the default .btn-capsule width:70% was sized for the
+     shorter hero label ("See how it works") and wrapped this longer CTA,
+     orphaning "for" alone on its own line. */
+  .qualify-cta{display:flex;justify-content:center}
+  .qualify-cta .btn-capsule{width:94%;white-space:nowrap}
+
   /* ---------- Footer (shared chrome) ---------- */
   .site-footer{background:var(--grape);color:#CFC6E4;padding:56px 0 0;margin-top:clamp(40px,9vw,64px)}
   .site-footer .logo{color:#fff}
@@ -277,29 +293,29 @@
         <p>Dispensaries, cultivation, hemp processing, e-commerce, restaurants, retail, construction &mdash; matched to the financing that fits.</p>
       </div>
       <div class="fo-grid">
-        <a class="fo-card" href="funding.html">
+        <a class="fo-card" href="funding.html#mca">
           <h3>Merchant Cash Advance</h3>
-          <p><strong>Best for:</strong> fast capital from strong sales</p>
+          <p>A lump sum repaid from daily or weekly sales. Fastest option, most flexible credit requirements. <strong>Best for:</strong> strong sales, fast timeline.</p>
           <span class="fo-go">Learn more &rarr;</span>
         </a>
-        <a class="fo-card" href="funding.html">
+        <a class="fo-card" href="funding.html#term-loan">
           <h3>Business Term Loan</h3>
-          <p><strong>Best for:</strong> planned, predictable payments</p>
+          <p>A lump sum repaid over a fixed term with set monthly payments. Predictable and straightforward, priced with real interest, not a factor rate. <strong>Best for:</strong> planned, predictable payments.</p>
           <span class="fo-go">Learn more &rarr;</span>
         </a>
-        <a class="fo-card" href="funding.html">
+        <a class="fo-card" href="funding.html#line-of-credit">
           <h3>Business Line of Credit</h3>
-          <p><strong>Best for:</strong> flexible, ongoing access</p>
+          <p>Draw funds as needed and pay interest only on what you use. Repay and redraw again, so the same credit line keeps working for you. <strong>Best for:</strong> flexible, ongoing access.</p>
           <span class="fo-go">Learn more &rarr;</span>
         </a>
-        <a class="fo-card" href="funding.html">
+        <a class="fo-card" href="funding.html#equipment-financing">
           <h3>Equipment Financing</h3>
-          <p><strong>Best for:</strong> buying or upgrading equipment</p>
+          <p>A loan secured by the equipment itself, often covering most of the purchase price. Keeps your cash free for everything else. <strong>Best for:</strong> buying or upgrading equipment.</p>
           <span class="fo-go">Learn more &rarr;</span>
         </a>
-        <a class="fo-card" href="funding.html">
+        <a class="fo-card" href="funding.html#invoice-factoring">
           <h3>Invoice Factoring</h3>
-          <p><strong>Best for:</strong> cash tied up in invoices</p>
+          <p>Sell unpaid invoices for cash now instead of waiting 30&ndash;90 days. Your customer's credit matters more than yours. <strong>Best for:</strong> B2B with slow-paying customers.</p>
           <span class="fo-go">Learn more &rarr;</span>
         </a>
         <a class="fo-card fo-card--accent" href="apply.html">
@@ -307,6 +323,25 @@
           <p>Apply once and we&rsquo;ll match you to the funding that fits your business.</p>
           <span class="fo-go">Start my application &rarr;</span>
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== DO YOU QUALIFY ============================== -->
+  <section class="qualify-section">
+    <div class="container">
+      <div class="fo-head">
+        <h2>Do you qualify?</h2>
+        <p>Most businesses we fund meet these:</p>
+      </div>
+      <ul class="qualify-list">
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> 3+ months in business</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> $5,000+ in monthly revenue</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> A business bank account</li>
+      </ul>
+      <p class="qualify-note">Credit scores in the 500s are common in our book. If you're outside these ranges, call us &mdash; there are still options.</p>
+      <div class="qualify-cta">
+        <a class="btn-capsule" href="apply.html">See what I'd qualify for</a>
       </div>
     </div>
   </section>
